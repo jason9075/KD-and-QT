@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- KD-Tree side: vertical then horizontal splits -->
+  <rect width="15" height="32" fill="#F8F7F4"/>
+  <line x1="7.5" y1="0" x2="7.5" y2="32" stroke="#1B3A6B" stroke-width="1.5"/>
+  <line x1="0"   y1="10" x2="7.5" y2="10" stroke="#1B3A6B" stroke-width="1"/>
+  <line x1="7.5" y1="22" x2="15"  y2="22" stroke="#1B3A6B" stroke-width="1"/>
+
+  <!-- center divider -->
+  <line x1="16" y1="0" x2="16" y2="32" stroke="#D0CFC8" stroke-width="1"/>
+
+  <!-- Quadtree side: cross subdivisions -->
+  <rect x="17" width="15" height="32" fill="#F8F7F4"/>
+  <line x1="24.5" y1="0"  x2="24.5" y2="32" stroke="#0D4A30" stroke-width="1.5"/>
+  <line x1="17"   y1="16" x2="32"   y2="16" stroke="#0D4A30" stroke-width="1.5"/>
+  <line x1="20.75" y1="0"  x2="20.75" y2="16" stroke="#0D4A30" stroke-width="0.75"/>
+  <line x1="28.25" y1="16" x2="28.25" y2="32" stroke="#0D4A30" stroke-width="0.75"/>
+</svg>
