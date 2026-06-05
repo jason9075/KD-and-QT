@@ -60,13 +60,8 @@ export function SplitCanvas({ points, showDepth, qtCapacity, animSpeed, onStatsU
     const toKD = points.map(p => ({ ...p, x: p.nx * half, y: p.ny * H }));
     const toQT = points.map(p => ({ ...p, x: half + p.nx * half, y: p.ny * H }));
 
-    const t0 = performance.now();
     const kdTree = buildKDTree(toKD);
-    const kdMs = (performance.now() - t0).toFixed(2);
-
-    const t1 = performance.now();
     const qtTree = buildQuadtree(toQT, qtBounds, qtCapacity);
-    const qtMs = (performance.now() - t1).toFixed(2);
 
     stateRef.current.kdTree = kdTree;
     stateRef.current.qtTree = qtTree;
@@ -87,7 +82,7 @@ export function SplitCanvas({ points, showDepth, qtCapacity, animSpeed, onStatsU
     if (onStatsUpdate) {
       const { treeHeight: kdH, nodeCount: kdN } = await_import_counts('kd', kdTree);
       const { treeHeight: qtH, nodeCount: qtN } = await_import_counts('qt', qtTree);
-      onStatsUpdate({ kdMs, qtMs, kdH, kdN, qtH, qtN });
+      onStatsUpdate({ kdH, kdN, qtH, qtN });
     }
 
     ctx.setTransform(1, 0, 0, 1, 0, 0);

@@ -52,13 +52,11 @@ export function StatsPanel({ kdStats, qtStats }) {
         ['Height',        kdStats.height],
         ['Nodes',         kdStats.nodes],
         ['NN visited',    kdStats.nnVisited ?? '—'],
-        ['Build (ms)',    kdStats.buildMs],
       ]} />
       <Col label="QUADTREE" color="var(--color-qt)" stats={[
         ['Height',        qtStats.height],
         ['Nodes (total)', qtStats.nodes],
         ['NN visited',    qtStats.nnVisited ?? '—'],
-        ['Build (ms)',    qtStats.buildMs],
       ]} />
     </div>
   );

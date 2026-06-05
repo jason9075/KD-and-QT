@@ -57,7 +57,7 @@ function reducer(state, action) {
 function clamp(v) { return Math.max(0.01, Math.min(0.99, v)); }
 function randn() { return (Math.random() + Math.random() + Math.random() - 1.5) / 1.5; }
 
-const defaultStats = { height: 0, nodes: 0, nnVisited: null, buildMs: '—' };
+const defaultStats = { height: 0, nodes: 0, nnVisited: null };
 
 export default function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -66,9 +66,9 @@ export default function App() {
   const [showMath, setShowMath] = useState(false);
   const canvasContainerRef = useRef(null);
 
-  const handleStatsUpdate = useCallback(({ kdMs, qtMs, kdH, kdN, qtH, qtN }) => {
-    setKdStats(s => ({ ...s, height: kdH, nodes: kdN, buildMs: kdMs }));
-    setQtStats(s => ({ ...s, height: qtH, nodes: qtN, buildMs: qtMs }));
+  const handleStatsUpdate = useCallback(({ kdH, kdN, qtH, qtN }) => {
+    setKdStats(s => ({ ...s, height: kdH, nodes: kdN }));
+    setQtStats(s => ({ ...s, height: qtH, nodes: qtN }));
   }, []);
 
   const handleCanvasClick = useCallback((e) => {
