@@ -90,7 +90,7 @@ export default function App() {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Navbar />
-      <Hero />
+      <Hero onShowMath={() => setShowMath(true)} />
 
       <Controls state={state} dispatch={dispatch} />
 
@@ -112,17 +112,6 @@ export default function App() {
           onStatsUpdate={handleStatsUpdate}
         />
         {/* 💡 Math button */}
-        <button
-          onClick={e => { e.stopPropagation(); setShowMath(true); }}
-          aria-label="Explain the math"
-          style={{
-            position: 'absolute', bottom: '1rem', right: '1rem',
-            width: '2.5rem', height: '2.5rem', borderRadius: '50%',
-            border: '1px solid var(--color-border)', background: 'var(--color-bg)',
-            fontSize: '1.25rem', cursor: 'pointer', display: 'grid', placeItems: 'center',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
-          }}
-        >💡</button>
       </div>
 
       <StatsPanel kdStats={kdStats} qtStats={qtStats} />

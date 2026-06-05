@@ -118,37 +118,48 @@ export function SplitCanvas({ points, showDepth, qtCapacity, animSpeed, onStatsU
       ctx.lineWidth = 1;
       drawLine(ctx, half, 0, half, H);
 
-      // Labels
+      // Labels — blink while animation is in progress
+      const now = Date.now();
+      const kdAnimating = s.animLines.length > 0 && s.animLines.some(item => item.p < 1);
+      const qtAnimating = s.animCells.length > 0 && s.animCells.some(item => item.p < 1);
+      const blinkAlpha = 0.3 + 0.7 * Math.abs(Math.sin(now / 300));
+
       ctx.font = '600 11px "IBM Plex Mono", monospace';
       ctx.letterSpacing = '0.1em';
-      ctx.fillStyle = KD_COLOR;
+      ctx.fillStyle = kdAnimating ? `rgba(27,58,107,${blinkAlpha})` : KD_COLOR;
       ctx.fillText('KD-TREE', 12, 22);
-      ctx.fillStyle = QT_COLOR;
+      ctx.fillStyle = qtAnimating ? `rgba(13,74,48,${blinkAlpha})` : QT_COLOR;
       ctx.fillText('QUADTREE', half + 12, 22);
 
-      // Draw KD partition lines
-      for (const item of s.animLines) {
-        item.p = Math.min(1, item.p + 0.04 * item.spd);
+      // Draw KD partition lines — sequential: each line starts only after previous finishes
+      for (let i = 0; i < s.animLines.length; i++) {
+        const item = s.animLines[i];
+        if (i === 0 || s.animLines[i - 1].p >= 1) {
+          item.p = Math.min(1, item.p + 0.04 * item.spd);
+        }
+        if (item.p <= 0) continue;
         const { l, p } = item;
         const alpha = depthAlpha(l.depth, showDepth);
         ctx.strokeStyle = `rgba(27,58,107,${alpha})`;
         ctx.lineWidth = l.depth === 0 ? 1.5 : 1;
-        // animate from edge inward
         const mx = l.x1 + (l.x2 - l.x1) * p;
         const my = l.y1 + (l.y2 - l.y1) * p;
         ctx.beginPath(); ctx.moveTo(l.x1, l.y1); ctx.lineTo(mx, my); ctx.stroke();
       }
 
-      // Draw QT divider lines
-      for (const item of s.animCells) {
-        item.p = Math.min(1, item.p + 0.05 * item.spd);
+      // Draw QT divider lines — sequential: each line starts only after previous finishes
+      for (let i = 0; i < s.animCells.length; i++) {
+        const item = s.animCells[i];
+        if (i === 0 || s.animCells[i - 1].p >= 1) {
+          item.p = Math.min(1, item.p + 0.05 * item.spd);
+        }
+        if (item.p <= 0) continue;
         const { l, p } = item;
         const alpha = depthAlpha(l.depth, showDepth);
         ctx.strokeStyle = `rgba(13,74,48,${alpha})`;
         ctx.lineWidth = l.depth === 0 ? 1.5 : 1;
         const cx = (l.x1 + l.x2) / 2;
         const cy = (l.y1 + l.y2) / 2;
-        // expand from center outward
         const ex1 = cx + (l.x1 - cx) * p;
         const ey1 = cy + (l.y1 - cy) * p;
         const ex2 = cx + (l.x2 - cx) * p;

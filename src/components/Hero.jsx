@@ -4,6 +4,7 @@ const styles = {
   hero: {
     height: '30vh', display: 'flex', flexDirection: 'column',
     justifyContent: 'center', padding: '0 1.5rem',
+    position: 'relative',
     background: `
       linear-gradient(var(--color-border) 1px, transparent 1px),
       linear-gradient(90deg, var(--color-border) 1px, transparent 1px)
@@ -23,7 +24,7 @@ const styles = {
   },
 };
 
-export function Hero() {
+export function Hero({ onShowMath }) {
   return (
     <section style={styles.hero}>
       <h1 style={styles.title}>Two ways to cut space.</h1>
@@ -32,6 +33,17 @@ export function Hero() {
         Quadtree subdivides cells into four equal quadrants.
         Click the canvas to place points and watch both structures rebuild in real time.
       </p>
+      <button
+        onClick={onShowMath}
+        aria-label="Explain the math"
+        style={{
+          position: 'absolute', top: '1rem', right: '1rem',
+          width: '2.5rem', height: '2.5rem', borderRadius: '50%',
+          border: '1px solid var(--color-border)', background: 'var(--color-bg)',
+          fontSize: '1.25rem', cursor: 'pointer', display: 'grid', placeItems: 'center',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+        }}
+      >💡</button>
     </section>
   );
 }

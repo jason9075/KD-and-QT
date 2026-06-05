@@ -60,11 +60,11 @@ export function Controls({ state, dispatch }) {
 
       <div style={S.group}>
         <button style={S.btn}
-          onClick={() => dispatch({ type: 'RANDOM_POINTS', count: 20, mode: 'uniform' })}>
+          onClick={() => dispatch({ type: 'RANDOM_POINTS', count: maxPoints, mode: 'uniform' })}>
           Random (Uniform)
         </button>
         <button style={S.btn}
-          onClick={() => dispatch({ type: 'RANDOM_POINTS', count: 30, mode: 'cluster' })}>
+          onClick={() => dispatch({ type: 'RANDOM_POINTS', count: maxPoints, mode: 'cluster' })}>
           Random (Cluster)
         </button>
         <button style={{ ...S.btn, color: 'var(--color-point)', borderColor: 'var(--color-point)' }}
