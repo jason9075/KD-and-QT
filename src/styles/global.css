@@ -1,0 +1,41 @@
+@import 'katex/dist/katex.min.css';
+
+:root {
+  --color-bg:         #F8F7F4;
+  --color-surface:    #EFEFEB;
+  --color-border:     #D0CFC8;
+  --color-text:       #1A1A18;
+  --color-text-muted: #888880;
+
+  --color-kd:         #1B3A6B;
+  --color-kd-light:   #E8EEF7;
+  --color-qt:         #0D4A30;
+  --color-qt-light:   #E3F0E9;
+
+  --color-point:      #C84B2F;
+  --color-highlight:  #F0A500;
+
+  --font-display: 'IBM Plex Mono', monospace;
+  --font-body:    'DM Mono', monospace;
+
+  --navbar-h: 48px;
+}
+
+*, *::before, *::after {
+  margin: 0; padding: 0; box-sizing: border-box;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

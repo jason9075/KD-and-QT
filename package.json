@@ -1,0 +1,21 @@
+{
+  "name": "partition-gfx-lab",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node --require ./scripts/fix-noexec.cjs ./node_modules/vite/bin/vite.js --port 8080",
+    "build": "node --require ./scripts/fix-noexec.cjs ./node_modules/vite/bin/vite.js build",
+    "preview": "node --require ./scripts/fix-noexec.cjs ./node_modules/vite/bin/vite.js preview --port 8080"
+  },
+  "dependencies": {
+    "katex": "^0.16.9",
+    "prismjs": "^1.29.0",
+    "prism-themes": "^1.9.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.0",
+    "vite": "^5.4.0"
+  }
+}
