@@ -2,7 +2,7 @@
 
 An interactive side-by-side visualizer comparing two classic 2D spatial partitioning structures: **KD-Tree** and **Quadtree**.
 
-**Live demo:** https://github.com/jason9075/KD-and-QT
+**Live demo:** https://jason9075.github.io/KD-and-QT/
 
 ---
 
